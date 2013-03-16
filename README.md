@@ -3,17 +3,34 @@ MySimpleCertViewer
 
 MySimpleCertViewer - a simple server certificate viewer in PHP.
 
+#### Usage
+
+Deploy the script to your web server and point to it.
+
+#### Basics of the script
+
+The command line to show the SHA1 fingerprint of ```www.cacert.org:443```:
+
+```
+echo -n | \
+openssl s_client -connect www.cacert.org:443 2>/dev/null | \
+sed -ne "/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p" | \
+openssl x509 -fingerprint -sha1 -noout
+```
+
+
 #### References
 * http://stackoverflow.com/questions/6426927/php-ssl-certificate-fingerprint
 * http://kubieziel.de/blog/archives/1484-Fingerprints-von-SSL-Seiten-pruefen.html
+* http://unitstep.net/blog/2009/05/05/using-curl-in-php-to-access-https-ssltls-protected-sites/
 
-#### Example output for www.cacert.org
+#### Example output for https://www.cacert.org:443
 ```
 MySimpleCertViewer
 
 source code on GitHub
 
-Certificate data for https://www.cacert.org:443 (x-fields added by the viewer)
+Certificate data for https://www.cacert.org:443 (x-fields are added by the viewer)
 
 Array
 (
@@ -23,8 +40,8 @@ Array
     [x-fingerprints] => Array
         (
             [sha1] => 2164c049b001b7a84e459ba6f0d7ef232cfcad58
-            [sha256] => 3d8b7e2b565d9fc45eff89482098c2b0a03e3a4e12804978dbb37da3e0c65d63
             [md5] => 6cbcd679bef2e32a1874bd2d3dc91457
+            [sha256] => 3d8b7e2b565d9fc45eff89482098c2b0a03e3a4e12804978dbb37da3e0c65d63
         )
 
     [name] => /C=AU/ST=NSW/L=Sydney/O=CAcert Inc./CN=www.cacert.org

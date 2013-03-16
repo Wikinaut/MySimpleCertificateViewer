@@ -40,8 +40,8 @@ $certArray['x-port'] = $port;
 
 $certArray['x-fingerprints'] = array(
 	"sha1" => sha1( $decCert ),
-	"sha256" => sha256( $decCert ),
 	"md5" => md5( $decCert ),
+	"sha256" => sha256( $decCert ),
 );
 
 $certArray = $certArray + openssl_x509_parse( $cert );
@@ -54,7 +54,7 @@ echo <<<EOF
 <pre>
 <a href="https://github.com/Wikinaut/MySimpleCertViewer">source code on GitHub</a>
 <hr>
-Certificate data for <b><a href="https://$server:$port">https://$server:$port</a></b> (x-fields added by the viewer)
+Certificate data for <b><a href="https://$server:$port">https://$server:$port</a></b> (x-fields are added by the viewer)
 
 $output
 </pre>
