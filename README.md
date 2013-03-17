@@ -28,10 +28,18 @@ MySimpleCertViewer
 
 source code on GitHub
 
-Certificate data for https://www.google.org:443 (x-fields are added by the viewer)
+Certificate data for https://www.google.org:443 as of 2013:03:17 08:21:15 UTC
+(x-fields are added by MySimpleCertViewer)
 
 Array
 (
+    [x-mysimplecertviewer] => Array
+        (
+            [version] => 1.01 20130317
+            [retrieval-time-utc] => 20130317082115Z
+            [retrieval-time-unix] => 1363508475
+        )
+
     [x-server-port] => www.google.org:443
     [x-server] => www.google.org
     [x-port] => 443
