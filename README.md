@@ -12,9 +12,7 @@ Deploy the script to your web server and point to it.
 The command line to show the SHA1 fingerprint of ```www.cacert.org:443```:
 
 ```
-echo -n | \
-openssl s_client -connect www.cacert.org:443 2>/dev/null | \
-sed -ne "/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p" | \
+openssl s_client -connect www.cacert.org:443 2>/dev/null </dev/null | \
 openssl x509 -fingerprint -sha1 -noout
 ```
 
