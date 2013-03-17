@@ -4,7 +4,7 @@
  * MySimpleCertViewer - a simple server certificate viewer in PHP
  *
  * T.Gries
- * 20130316 version 1.00
+ * 20130317 version 1.01
  *
  * License: MIT/X11
  * http://www.opensource.org/licenses/mit-license.php
@@ -17,8 +17,7 @@ $server = "www.cacert.org";
 $port = "443";
 
 $certFilename = tempnam( "", "server-certificate-");
-exec( "echo -n " .
-	"| openssl s_client -connect $server:$port 2>/dev/null " .
+exec( "openssl s_client -connect $server:$port 2>/dev/null </dev/null " .
 	"| sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' 1> $certFilename",
 	$out
 );
