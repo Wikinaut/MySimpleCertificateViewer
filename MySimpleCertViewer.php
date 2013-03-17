@@ -13,7 +13,7 @@
 
 # The server and port are currently hardcoded
 #
-$server = "www.cacert.org";
+$server = "www.google.org";
 $port = "443";
 
 $certFilename = tempnam( "", "server-certificate-");
@@ -44,6 +44,8 @@ $certArray['x-fingerprints'] = array(
 );
 
 $certArray = $certArray + openssl_x509_parse( $cert );
+$subjectAltName = $certArray['extensions']['subjectAltName'];
+$certArray['extensions']['x-subjectAltName'] = explode( ",", $subjectAltName );
 $certArray['x-certificate-base64'] = $cert;
 
 header( "Content-Type: text/html" );

@@ -7,12 +7,12 @@ MySimpleCertViewer - a simple server certificate viewer in PHP.
 
 Deploy the script to your web server and point to it.
 
-#### Basics of the script
+#### Additional information: command line to dump the fingerprint of a server certificate
 
-The command line to show the SHA1 fingerprint of ```www.cacert.org:443```:
+If you only want to print the SHA1 fingerprint of ```www.google.org:443```, instead of installing the script you can simply use
 
 ```
-openssl s_client -connect www.cacert.org:443 2>/dev/null </dev/null | \
+openssl s_client -connect www.google.org:443 2>/dev/null </dev/null | \
 openssl x509 -fingerprint -sha1 -noout
 ```
 
@@ -22,51 +22,50 @@ openssl x509 -fingerprint -sha1 -noout
 * http://kubieziel.de/blog/archives/1484-Fingerprints-von-SSL-Seiten-pruefen.html
 * http://unitstep.net/blog/2009/05/05/using-curl-in-php-to-access-https-ssltls-protected-sites/
 
-#### Example output for https://www.cacert.org:443
+#### Example output for https://www.google.org:443
 ```
 MySimpleCertViewer
 
 source code on GitHub
 
-Certificate data for https://www.cacert.org:443 (x-fields are added by the viewer)
+Certificate data for https://www.google.org:443 (x-fields are added by the viewer)
 
 Array
 (
-    [x-server-port] => www.cacert.org:443
-    [x-server] => www.cacert.org
+    [x-server-port] => www.google.org:443
+    [x-server] => www.google.org
     [x-port] => 443
     [x-fingerprints] => Array
         (
-            [sha1] => 2164c049b001b7a84e459ba6f0d7ef232cfcad58
-            [md5] => 6cbcd679bef2e32a1874bd2d3dc91457
-            [sha256] => 3d8b7e2b565d9fc45eff89482098c2b0a03e3a4e12804978dbb37da3e0c65d63
+            [sha1] => 1523b48f716fe78855175819f3d4c0598a077344
+            [md5] => 7bb97bd73e7577f497193d490916a1c0
+            [sha256] => 4a41aee7ac2aa337aeb0fcfcf708ba485c6409559e47415421215fcfd791f238
         )
 
-    [name] => /C=AU/ST=NSW/L=Sydney/O=CAcert Inc./CN=www.cacert.org
+    [name] => /C=US/ST=California/L=Mountain View/O=Google Inc/CN=misc.google.com
     [subject] => Array
         (
-            [C] => AU
-            [ST] => NSW
-            [L] => Sydney
-            [O] => CAcert Inc.
-            [CN] => www.cacert.org
+            [C] => US
+            [ST] => California
+            [L] => Mountain View
+            [O] => Google Inc
+            [CN] => misc.google.com
         )
 
-    [hash] => c1df002e
+    [hash] => 82ea0971
     [issuer] => Array
         (
-            [O] => Root CA
-            [OU] => http://www.cacert.org
-            [CN] => CA Cert Signing Authority
-            [emailAddress] => support@cacert.org
+            [C] => US
+            [O] => Google Inc
+            [CN] => Google Internet Authority
         )
 
     [version] => 2
-    [serialNumber] => 766918
-    [validFrom] => 120506184641Z
-    [validTo] => 140506184641Z
-    [validFrom_time_t] => 1336330001
-    [validTo_time_t] => 1399402001
+    [serialNumber] => 96943236392830655036860
+    [validFrom] => 130220133724Z
+    [validTo] => 130607194327Z
+    [validFrom_time_t] => 1361367444
+    [validTo_time_t] => 1370634207
     [purposes] => Array
         (
             [1] => Array
@@ -106,7 +105,7 @@ Array
 
             [6] => Array
                 (
-                    [0] => 
+                    [0] => 1
                     [1] => 
                     [2] => crlsign
                 )
@@ -136,46 +135,79 @@ Array
 
     [extensions] => Array
         (
-            [basicConstraints] => CA:FALSE
-            [extendedKeyUsage] => TLS Web Client Authentication, TLS Web Server Authentication, Netscape Server Gated Crypto, Microsoft Server Gated Crypto
-            [keyUsage] => Digital Signature, Key Encipherment
-            [authorityInfoAccess] => OCSP - URI:http://ocsp.cacert.org/
+            [extendedKeyUsage] => TLS Web Server Authentication, TLS Web Client Authentication
+            [subjectKeyIdentifier] => 08:19:9A:02:9E:C8:AF:0F:5C:81:8E:01:4F:BF:E6:BF:F1:37:2E:61
+            [authorityKeyIdentifier] => keyid:BF:C0:30:EB:F5:43:11:3E:67:BA:9E:91:FB:FC:6A:DA:E3:6B:12:24
 
-            [subjectAltName] => DNS:www.cacert.org, DNS:secure.cacert.org, DNS:wwwmail.cacert.org, DNS:cacert.org, DNS:www.cacert.net, DNS:cacert.net, DNS:www.cacert.com, DNS:cacert.com
+            [crlDistributionPoints] => 
+Full Name:
+  URI:http://www.gstatic.com/GoogleInternetAuthority/GoogleInternetAuthority.crl
+
+            [authorityInfoAccess] => CA Issuers - URI:http://www.gstatic.com/GoogleInternetAuthority/GoogleInternetAuthority.crt
+
+            [basicConstraints] => CA:FALSE
+            [subjectAltName] => DNS:misc.google.com, DNS:*.api.cluster.labs.prizes.org, DNS:*.api.prizes.org, DNS:*.chrome.com, DNS:*.cluster.labs.prizes.org, DNS:*.gbc.beatthatquote.com, DNS:*.google.org, DNS:*.googleapps.com, DNS:*.googlecompare.co.uk, DNS:*.googleforveterans.com, DNS:*.personfinder.google.org, DNS:*.prizes.org, DNS:*.quoteproxy.beatthatquote.com, DNS:*.schemer.com, DNS:*.youtubemobilesupport.com, DNS:chrome.com, DNS:gbc.beatthatquote.com, DNS:google.org, DNS:googleapps.com, DNS:googlecompare.co.uk, DNS:prizes.org, DNS:quoteproxy.beatthatquote.com, DNS:schemer.com, DNS:youtubemobilesupport.com
+            [x-subjectAltName] => Array
+                (
+                    [0] => DNS:misc.google.com
+                    [1] =>  DNS:*.api.cluster.labs.prizes.org
+                    [2] =>  DNS:*.api.prizes.org
+                    [3] =>  DNS:*.chrome.com
+                    [4] =>  DNS:*.cluster.labs.prizes.org
+                    [5] =>  DNS:*.gbc.beatthatquote.com
+                    [6] =>  DNS:*.google.org
+                    [7] =>  DNS:*.googleapps.com
+                    [8] =>  DNS:*.googlecompare.co.uk
+                    [9] =>  DNS:*.googleforveterans.com
+                    [10] =>  DNS:*.personfinder.google.org
+                    [11] =>  DNS:*.prizes.org
+                    [12] =>  DNS:*.quoteproxy.beatthatquote.com
+                    [13] =>  DNS:*.schemer.com
+                    [14] =>  DNS:*.youtubemobilesupport.com
+                    [15] =>  DNS:chrome.com
+                    [16] =>  DNS:gbc.beatthatquote.com
+                    [17] =>  DNS:google.org
+                    [18] =>  DNS:googleapps.com
+                    [19] =>  DNS:googlecompare.co.uk
+                    [20] =>  DNS:prizes.org
+                    [21] =>  DNS:quoteproxy.beatthatquote.com
+                    [22] =>  DNS:schemer.com
+                    [23] =>  DNS:youtubemobilesupport.com
+                )
+
         )
 
     [x-certificate-base64] => -----BEGIN CERTIFICATE-----
-MIIFZDCCA0ygAwIBAgIDC7PGMA0GCSqGSIb3DQEBBQUAMHkxEDAOBgNVBAoTB1Jv
-b3QgQ0ExHjAcBgNVBAsTFWh0dHA6Ly93d3cuY2FjZXJ0Lm9yZzEiMCAGA1UEAxMZ
-Q0EgQ2VydCBTaWduaW5nIEF1dGhvcml0eTEhMB8GCSqGSIb3DQEJARYSc3VwcG9y
-dEBjYWNlcnQub3JnMB4XDTEyMDUwNjE4NDY0MVoXDTE0MDUwNjE4NDY0MVowWzEL
-MAkGA1UEBhMCQVUxDDAKBgNVBAgTA05TVzEPMA0GA1UEBxMGU3lkbmV5MRQwEgYD
-VQQKEwtDQWNlcnQgSW5jLjEXMBUGA1UEAxMOd3d3LmNhY2VydC5vcmcwggEiMA0G
-CSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDeNSAxSFtymeN6rQD69eXIJEnCCP7Z
-24/fdOgxRDSBhfQDUVhdmsuDOvuziOoWGqRxZPcWdMEMRcJ5SrA2aHIstvnaLhUl
-xp2fuaeXx9XMCJ9ZmzHZbH4wqLaU+UlhcSsdkPzapf3N3HaUAW8kT4bHEGzObYVC
-UBxxhpY01EoGRQmnFojzLNF3+0O1npQzXg5MeIWHW/Z+9jE+6odL6IXgg1bvrP4d
-FgoveTcG6BmJu+50RwHaUad7hQuNeS+pNsVzCiDdMF2qoCQXtAGhnEQ9/KHpBD2z
-ISBVIyEbYxdyU/WxnkaOof63Mf/TAgMNzVN9duqEtFyvvMrQY1XkBBwfAgMBAAGj
-ggERMIIBDTAMBgNVHRMBAf8EAjAAMDQGA1UdJQQtMCsGCCsGAQUFBwMCBggrBgEF
-BQcDAQYJYIZIAYb4QgQBBgorBgEEAYI3CgMDMAsGA1UdDwQEAwIFoDAzBggrBgEF
-BQcBAQQnMCUwIwYIKwYBBQUHMAGGF2h0dHA6Ly9vY3NwLmNhY2VydC5vcmcvMIGE
-BgNVHREEfTB7gg53d3cuY2FjZXJ0Lm9yZ4IRc2VjdXJlLmNhY2VydC5vcmeCEnd3
-d21haWwuY2FjZXJ0Lm9yZ4IKY2FjZXJ0Lm9yZ4IOd3d3LmNhY2VydC5uZXSCCmNh
-Y2VydC5uZXSCDnd3dy5jYWNlcnQuY29tggpjYWNlcnQuY29tMA0GCSqGSIb3DQEB
-BQUAA4ICAQA2+uCGX18kZD8gyfj44TlwV4TXJ5BrT0M9qogg2k5u057i+X2ePy3D
-iE2REyLkU+i5ekH5gvTl74uSJKtpSf/hMyJEByyPyIULhlXCl46z2Z60drYzO4ig
-apCdkm0JthVGvk6/hjdaxgBGhUvSTEP5nLNkDa+uYVHJI58wfX2oh9gqxf8VnMJ8
-/A8Zi6mYCWUlFUobNd/ozyDZ6WVntrLib85sAFhds93nkoUYxgx1N9Xg/I31/jcL
-6bqmpRAZcbPtvEom0RyqPLM+AOgySWiYbg1Nl8nKx25C2AuXk63NN4CVwkXpdFF3
-q5qk1izPruvJ68jNW0pG7nrMQsiY2BCesfGyEzY8vfrMjeR5MLNv5r+obeYFnC1j
-uYp6JBt+thW+xPFzHYLjohKPwo/NbMOjIUM9gv/Pq3rVRPgWru4/8yYWhrmEK370
-rtlYBUSGRUdR8xed1Jvs+4qJ3s9t41mLSXvUfwyPsT7eoloUAfw3RhdwOzXoC2P6
-ftmniyu/b/HuYH1AWK+HFtFi9CHiMIqOJMhj/LnzL9udrQOpir7bVej/mlb3kSRo
-2lZymKOvuMymMpJkvBvUU/QEbCxWZAkTyqL2qlcQhHv7W366DOFjxDqpthaTRD69
-T8i/2AnsBDjYFxa47DisIvR57rLmE+fILjSvd94N/IpGs3lSOS5JeA==
+MIIFZDCCBM2gAwIBAgIKFIdNqgAAAAB9vDANBgkqhkiG9w0BAQUFADBGMQswCQYD
+VQQGEwJVUzETMBEGA1UEChMKR29vZ2xlIEluYzEiMCAGA1UEAxMZR29vZ2xlIElu
+dGVybmV0IEF1dGhvcml0eTAeFw0xMzAyMjAxMzM3MjRaFw0xMzA2MDcxOTQzMjda
+MGkxCzAJBgNVBAYTAlVTMRMwEQYDVQQIEwpDYWxpZm9ybmlhMRYwFAYDVQQHEw1N
+b3VudGFpbiBWaWV3MRMwEQYDVQQKEwpHb29nbGUgSW5jMRgwFgYDVQQDEw9taXNj
+Lmdvb2dsZS5jb20wgZ8wDQYJKoZIhvcNAQEBBQADgY0AMIGJAoGBAOD1FbMyG0IT
+8JOi2El6RVciBJp4ENfTkpJ2vn/HUq+gjprmUNxLSvcK+D8vBpkq8N41Qv+82PyT
+uZIB0pg2CJfs07C5+ZAQnwm01DiQjM/j2jKb5GegOBRYngbRkAPSGCufzJy+QBWb
+d1htqceIREEI/JH7pUGgg90XUQgBddBbAgMBAAGjggM0MIIDMDAdBgNVHSUEFjAU
+BggrBgEFBQcDAQYIKwYBBQUHAwIwHQYDVR0OBBYEFAgZmgKeyK8PXIGOAU+/5r/x
+Ny5hMB8GA1UdIwQYMBaAFL/AMOv1QxE+Z7qekfv8atrjaxIkMFsGA1UdHwRUMFIw
+UKBOoEyGSmh0dHA6Ly93d3cuZ3N0YXRpYy5jb20vR29vZ2xlSW50ZXJuZXRBdXRo
+b3JpdHkvR29vZ2xlSW50ZXJuZXRBdXRob3JpdHkuY3JsMGYGCCsGAQUFBwEBBFow
+WDBWBggrBgEFBQcwAoZKaHR0cDovL3d3dy5nc3RhdGljLmNvbS9Hb29nbGVJbnRl
+cm5ldEF1dGhvcml0eS9Hb29nbGVJbnRlcm5ldEF1dGhvcml0eS5jcnQwDAYDVR0T
+AQH/BAIwADCCAfoGA1UdEQSCAfEwggHtgg9taXNjLmdvb2dsZS5jb22CHSouYXBp
+LmNsdXN0ZXIubGFicy5wcml6ZXMub3JnghAqLmFwaS5wcml6ZXMub3JnggwqLmNo
+cm9tZS5jb22CGSouY2x1c3Rlci5sYWJzLnByaXplcy5vcmeCFyouZ2JjLmJlYXR0
+aGF0cXVvdGUuY29tggwqLmdvb2dsZS5vcmeCECouZ29vZ2xlYXBwcy5jb22CFSou
+Z29vZ2xlY29tcGFyZS5jby51a4IXKi5nb29nbGVmb3J2ZXRlcmFucy5jb22CGSou
+cGVyc29uZmluZGVyLmdvb2dsZS5vcmeCDCoucHJpemVzLm9yZ4IeKi5xdW90ZXBy
+b3h5LmJlYXR0aGF0cXVvdGUuY29tgg0qLnNjaGVtZXIuY29tghoqLnlvdXR1YmVt
+b2JpbGVzdXBwb3J0LmNvbYIKY2hyb21lLmNvbYIVZ2JjLmJlYXR0aGF0cXVvdGUu
+Y29tggpnb29nbGUub3Jngg5nb29nbGVhcHBzLmNvbYITZ29vZ2xlY29tcGFyZS5j
+by51a4IKcHJpemVzLm9yZ4IccXVvdGVwcm94eS5iZWF0dGhhdHF1b3RlLmNvbYIL
+c2NoZW1lci5jb22CGHlvdXR1YmVtb2JpbGVzdXBwb3J0LmNvbTANBgkqhkiG9w0B
+AQUFAAOBgQA+S1/rzUlZDSKDPcEqqsM3C5pUaj7RgZoiJ3h/8KeQyx7VqTizca6/
+R9a+e4Y+pr6O7lvnKoDJaEzqouSecno7C9iklWpFD6Zrxew216ojNGvRsDyFQ8cH
+DaGc1y6dOFl3H4RxlnP/FqbjbeQ59zGXNzcoXYPBxX9W/TPEmdVZ2w==
 -----END CERTIFICATE-----
 
 )
 ```
-
