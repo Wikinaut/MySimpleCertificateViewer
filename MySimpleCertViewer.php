@@ -35,14 +35,14 @@ $cert = file_get_contents( $certFilename );
 $decCert = decodeCert( $cert );
 
 $certArray = array();
-$certArray['x-mysimplecertviewer'] = array(
-	"version" => $version,
-	"retrieval-time-utc" => date( "YmdHis", $now ) . "Z",
-	"retrieval-time-unix" => date( "U", $now),
-);
 $certArray['x-server-port'] = "$server:$port";
 $certArray['x-server'] = $server;
 $certArray['x-port'] = $port;
+$certArray['x-retrieval-time'] = array(
+	'utc' => date( "YmdHis", $now ) . "Z",
+	'unix' => date( "U", $now),
+);
+$certArray['x-mysimplecertviewer-version'] = $version;
 
 $certArray['x-fingerprints'] = array(
 	"sha1" => sha1( $decCert ),

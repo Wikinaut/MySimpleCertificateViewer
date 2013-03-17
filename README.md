@@ -24,25 +24,27 @@ openssl x509 -fingerprint -sha1 -noout
 
 #### Example output for https://www.google.org:443
 ```
+
 MySimpleCertViewer
 
 source code on GitHub
 
-Certificate data for https://www.google.org:443 as of 2013:03:17 08:21:15 UTC
+Certificate data for https://www.google.org:443 as of 2013:03:17 08:27:28 UTC
 (x-fields are added by MySimpleCertViewer)
+
 
 Array
 (
-    [x-mysimplecertviewer] => Array
-        (
-            [version] => 1.01 20130317
-            [retrieval-time-utc] => 20130317082115Z
-            [retrieval-time-unix] => 1363508475
-        )
-
     [x-server-port] => www.google.org:443
     [x-server] => www.google.org
     [x-port] => 443
+    [x-retrieval-time] => Array
+        (
+            [utc] => 20130317083025Z
+            [unix] => 1363509025
+        )
+    [x-mysimplecertviewer-version] => 1.01 20130317
+
     [x-fingerprints] => Array
         (
             [sha1] => 1523b48f716fe78855175819f3d4c0598a077344
