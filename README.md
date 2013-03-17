@@ -23,15 +23,13 @@ openssl x509 -fingerprint -sha1 -noout
 * http://unitstep.net/blog/2009/05/05/using-curl-in-php-to-access-https-ssltls-protected-sites/
 
 #### Example output for https://www.google.org:443
-```
 
+```
 MySimpleCertViewer
 
 source code on GitHub
 
-Certificate data for https://www.google.org:443 as of 2013:03:17 08:27:28 UTC
-(x-fields are added by MySimpleCertViewer)
-
+Example for www.google.org
 
 Array
 (
@@ -40,16 +38,16 @@ Array
     [x-port] => 443
     [x-retrieval-time] => Array
         (
-            [utc] => 20130317083025Z
-            [unix] => 1363509025
+            [utc] => 20130317224651Z
+            [unix] => 1363556811
         )
-    [x-mysimplecertviewer-version] => 1.01 20130317
 
+    [x-mysimplecertviewer-version] => 1.01 20130317
     [x-fingerprints] => Array
         (
-            [sha1] => 1523b48f716fe78855175819f3d4c0598a077344
-            [md5] => 7bb97bd73e7577f497193d490916a1c0
-            [sha256] => 4a41aee7ac2aa337aeb0fcfcf708ba485c6409559e47415421215fcfd791f238
+            [sha1] => ec3914135ddf70774a2429f01110220d98bba741
+            [md5] => e43370d2231b5f341295957948c36ed6
+            [sha256] => ceb2a71fa2e66fd1eb0a216f990e797c1933484648d3b268e3b63a3575c538e6
         )
 
     [name] => /C=US/ST=California/L=Mountain View/O=Google Inc/CN=misc.google.com
