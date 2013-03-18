@@ -49,6 +49,8 @@ function getCertificateInfo( $server, $port = 443, $timeout = false ) {
 	openssl_x509_free( $cp );
 
 	$now = time();
+	date_default_timezone_set( 'UTC' );
+
 	$certArray1 = array();
 
 	$certArray1['x-server-port'] = "$server:$port";
