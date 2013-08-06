@@ -14,7 +14,7 @@
  * http://www.opensource.org/licenses/mit-license.php
  *
  */
-define( 'CERTVIEWER_VERSION', "1.21 20130806" );
+define( 'CERTVIEWER_VERSION', "1.22 20130806" );
 
 function addColonSeparators( $str ) {
 	$ret = "";
@@ -93,7 +93,7 @@ function getCertificateInfo( $server, $port = 443, $timeout = false ) {
 
 
 // Example
-$server = "www.google.de";
+$server = "www.google.org";
 $output = print_r( getCertificateInfo( $server ), true );
 header( "Content-Type: text/html" );
 
