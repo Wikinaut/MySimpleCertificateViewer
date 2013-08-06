@@ -38,16 +38,16 @@ Array
     [x-port] => 443
     [x-retrieval-time] => Array
         (
-            [utc] => 20130806104703Z
-            [unix] => 1375786023
+            [utc] => 20130806230914Z
+            [unix] => 1375830554
         )
 
-    [x-mysimplecertviewer-version] => 1.23 20130806
+    [x-mysimplecertviewer-version] => 1.24 20130807
     [x-fingerprints] => Array
         (
-            [x-sha1] => fd:8c:19:47:69:80:5d:13:d7:14:ce:a3:20:45:af:75:07:f3:55:6f:
-            [x-md5] => 74:fb:da:83:52:34:59:a8:32:d9:6f:c5:31:39:2d:34:
-            [x-sha256] => 98:6f:0b:57:25:c0:68:18:de:5a:9b:66:91:f4:56:e3:54:4b:b7:fc:d7:30:c0:1c:95:cc:d2:7b:6b:ba:5c:cc:
+            [x-sha1] => fd:8c:19:47:69:80:5d:13:d7:14:ce:a3:20:45:af:75:07:f3:55:6f
+            [x-md5] => 74:fb:da:83:52:34:59:a8:32:d9:6f:c5:31:39:2d:34
+            [x-sha256] => 98:6f:0b:57:25:c0:68:18:de:5a:9b:66:91:f4:56:e3:54:4b:b7:fc:d7:30:c0:1c:95:cc:d2:7b:6b:ba:5c:cc
             [sha1] => fd8c194769805d13d714cea32045af7507f3556f
             [md5] => 74fbda83523459a832d96fc531392d34
             [sha256] => 986f0b5725c06818de5a9b6691f456e3544bb7fcd730c01c95ccd27b6bba5ccc

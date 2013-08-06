@@ -14,14 +14,14 @@
  * http://www.opensource.org/licenses/mit-license.php
  *
  */
-define( 'CERTVIEWER_VERSION', "1.23 20130806" );
+define( 'CERTVIEWER_VERSION', "1.24 20130807" );
 
 function addColonSeparators( $str ) {
 	$ret = "";
 	for ( $i = 0; $i < strlen( $str ); $i++ ) {
 		$ret .= substr( $str, $i, 1 ) . ( ( $i % 2 == 1 ) ? ":" : "" );
 	}
-	return $ret;
+	return rtrim( $ret, ":" );
 }
 
 function getCertificateInfo( $server, $port = 443, $timeout = false ) {
