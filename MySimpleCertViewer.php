@@ -14,7 +14,7 @@
  * http://www.opensource.org/licenses/mit-license.php
  *
  */
-define( 'CERTVIEWER_VERSION', "1.22 20130806" );
+define( 'CERTVIEWER_VERSION', "1.23 20130806" );
 
 function addColonSeparators( $str ) {
 	$ret = "";
@@ -68,9 +68,9 @@ function getCertificateInfo( $server, $port = 443, $timeout = false ) {
 	$certArray1['x-mysimplecertviewer-version'] = CERTVIEWER_VERSION;
 
 	// Decode the certificate to get fingerprints.
-	$cert = preg_replace( '/\-+(BEGIN|END) CERTIFICATE\-+/', '', $cert );
-	$cert = str_replace( array( "\n\r", "\n", "\r" ), '', trim( $cert ) );
-	$decCert = base64_decode( $cert );
+	$cleanedCert = preg_replace( '/\-+(BEGIN|END) CERTIFICATE\-+/', '', $cert );
+	$cleanedCert = str_replace( array( "\n\r", "\n", "\r" ), '', trim( $cleanedCert ) );
+	$decCert = base64_decode( $cleanedCert );
 
 	$sha1 = sha1( $decCert );
 	$md5 = md5( $decCert );
@@ -87,6 +87,7 @@ function getCertificateInfo( $server, $port = 443, $timeout = false ) {
 
 	$certArray['extensions']['x-subjectAltName'] = explode( ",", $certArray['extensions']['subjectAltName'] );
 	$certArray['x-certificate-base64'] = $cert;
+	$certArray['x-certificate'] = $cleanedCert;
 
 	return $certArray1 + $certArray;
 }
