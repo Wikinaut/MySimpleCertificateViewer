@@ -93,7 +93,7 @@ function getCertificateInfo( $server, $port = 443, $timeout = false ) {
 
 
 // Example
-$server = "www.google.org";
+$server = "www.google.de";
 $output = print_r( getCertificateInfo( $server ), true );
 header( "Content-Type: text/html" );
 
