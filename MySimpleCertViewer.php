@@ -14,7 +14,15 @@
  * http://www.opensource.org/licenses/mit-license.php
  *
  */
-define( 'CERTVIEWER_VERSION', "1.20 20130317" );
+define( 'CERTVIEWER_VERSION', "1.21 20130806" );
+
+function addColonSeparators( $str ) {
+	$ret = "";
+	for ( $i = 0; $i < strlen( $str ); $i++ ) {
+		$ret .= substr( $str, $i, 1 ) . ( ( $i % 2 == 1 ) ? ":" : "" );
+	}
+	return $ret;
+}
 
 function getCertificateInfo( $server, $port = 443, $timeout = false ) {
 
@@ -60,13 +68,21 @@ function getCertificateInfo( $server, $port = 443, $timeout = false ) {
 	$certArray1['x-mysimplecertviewer-version'] = CERTVIEWER_VERSION;
 
 	// Decode the certificate to get fingerprints.
-	$decCert = preg_replace( '/\-+(BEGIN|END) CERTIFICATE\-+/', '', $cert );
-	$decCert = str_replace( array( "\n\r", "\n", "\r" ), '', trim( $cert ) );
+	$cert = preg_replace( '/\-+(BEGIN|END) CERTIFICATE\-+/', '', $cert );
+	$cert = str_replace( array( "\n\r", "\n", "\r" ), '', trim( $cert ) );
 	$decCert = base64_decode( $cert );
+
+	$sha1 = sha1( $decCert );
+	$md5 = md5( $decCert );
+	$sha256 = hash( 'sha256', $decCert );
+
 	$certArray1['x-fingerprints'] = array(
-		"sha1" => sha1( $decCert ),
-		"md5" => md5( $decCert ),
-		"sha256" => hash( 'sha256', $decCert ),
+		"x-sha1" => addColonSeparators( $sha1 ),
+		"x-md5" => addColonSeparators( $md5 ),
+		"x-sha256" => addColonSeparators( $sha256 ),
+		"sha1" => $sha1,
+		"md5" =>  $md5,
+		"sha256" =>  $sha256
 	);
 
 	$certArray['extensions']['x-subjectAltName'] = explode( ",", $certArray['extensions']['subjectAltName'] );
@@ -77,7 +93,7 @@ function getCertificateInfo( $server, $port = 443, $timeout = false ) {
 
 
 // Example
-$server = "www.google.org";
+$server = "www.google.de";
 $output = print_r( getCertificateInfo( $server ), true );
 header( "Content-Type: text/html" );
 
