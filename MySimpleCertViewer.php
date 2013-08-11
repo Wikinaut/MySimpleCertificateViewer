@@ -111,6 +111,7 @@ header( "Content-Type: text/html" );
 
 $server = "www.google.org";
 $output = "";
+$q = "";
 
 if ( isset( $_REQUEST['q'] ) && ( trim( $_REQUEST['q'] ) != "" ) ) {
 
@@ -122,7 +123,6 @@ if ( isset( $_REQUEST['q'] ) && ( trim( $_REQUEST['q'] ) != "" ) ) {
 	$output = print_r( getCertificateInfo( $host, $port ), true );
 
 	$q = $host . ( ( $port != 443 ) ? ":$port" : "" );
-
 }
 
 echo <<<EOF
