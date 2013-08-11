@@ -14,7 +14,7 @@
  * http://www.opensource.org/licenses/mit-license.php
  *
  */
-define( 'CERTVIEWER_VERSION', "1.3 20130811" );
+define( 'CERTVIEWER_VERSION', "1.4 20130811" );
 
 function addColonSeparators( $str ) {
 	$ret = "";
@@ -120,7 +120,28 @@ if ( isset( $_REQUEST['q'] ) && ( trim( $_REQUEST['q'] ) != "" ) ) {
 	$port = array_key_exists( 'port', $parsedUrl ) ? $parsedUrl['port'] : "443";
 	$host = $parsedUrl['host'];
 
-	$output = print_r( getCertificateInfo( $host, $port ), true );
+	if ( is_array( getCertificateInfo( $host, $port ) ) ) {
+
+		$certificateInfo = getCertificateInfo( $host, $port );
+		$fingerPrints = $certificateInfo['x-fingerprints'];
+		$ts = date( "r", $certificateInfo['x-retrieval-time']['unix'] );
+		$output = "<div style='display:inline-block;background:lightyellow;padding:15px;border:1px dotted grey'>{$certificateInfo['x-server-port']}
+
+sha1    {$fingerPrints['x-sha1']}
+md5     {$fingerPrints['x-md5']}
+sha256  {$fingerPrints['x-sha256']}
+
+$ts
+</div><p>";
+
+		$output .= print_r( $certificateInfo, true );
+
+	} else {
+
+		// error
+		$output = getCertificateInfo( $host, $port );
+
+	}
 
 	$q = $host . ( ( $port != 443 ) ? ":$port" : "" );
 }
