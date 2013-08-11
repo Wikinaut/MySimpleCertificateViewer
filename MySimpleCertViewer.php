@@ -14,7 +14,7 @@
  * http://www.opensource.org/licenses/mit-license.php
  *
  */
-define( 'CERTVIEWER_VERSION', "1.24 20130807" );
+define( 'CERTVIEWER_VERSION', "1.3 20130811" );
 
 function addColonSeparators( $str ) {
 	$ret = "";
@@ -24,7 +24,17 @@ function addColonSeparators( $str ) {
 	return rtrim( $ret, ":" );
 }
 
-function getCertificateInfo( $server, $port = 443, $timeout = false ) {
+
+/***
+ * getCertificateInfo
+ *
+ * @param string $server
+ * @param string $port
+ * @param int $timeout in seconds
+ * @return array|string certificate data or error string
+ *
+ **/
+function getCertificateInfo( $server, $port = 443, $timeout = 5 ) {
 
 	$context = stream_context_create(
 		array( 
@@ -45,6 +55,10 @@ function getCertificateInfo( $server, $port = 443, $timeout = false ) {
 		STREAM_CLIENT_CONNECT,
 		$context
 	);
+
+	if ( $fp === false ) {
+		return "ERROR: stream_socket_client failed to connect to ssl://$server:$port ($errno $errstr).";
+	}
 
 	$params = stream_context_get_params( $fp );
 	fclose( $fp );
@@ -93,18 +107,35 @@ function getCertificateInfo( $server, $port = 443, $timeout = false ) {
 }
 
 
-// Example
-$server = "www.google.org";
-$output = print_r( getCertificateInfo( $server ), true );
 header( "Content-Type: text/html" );
 
-echo <<<EOF
-<h2>MySimpleCertViewer</h2>
-<pre>
-<a href="https://github.com/Wikinaut/MySimpleCertViewer">source code on GitHub</a>
-<hr>
-Example for $server
+$server = "www.google.org";
+$output = "";
 
+if ( isset( $_REQUEST['q'] ) && ( trim( $_REQUEST['q'] ) != "" ) ) {
+
+	$url = preg_replace( "!https?://!i", "", filter_var( $_REQUEST['q'], FILTER_SANITIZE_URL ) );
+	$parsedUrl = parse_url ( "https://" . $url );
+	$port = array_key_exists( 'port', $parsedUrl ) ? $parsedUrl['port'] : "443";
+	$host = $parsedUrl['host'];
+
+	$output = print_r( getCertificateInfo( $host, $port ), true );
+
+	$q = $host . ( ( $port != 443 ) ? ":$port" : "" );
+
+}
+
+echo <<<EOF
+<h2><a href="?q=">MySimpleCertViewer</a></h2>
+
+<pre style="margin:0;padding:0">Name of the server whose certificate you want to scrutinize:</pre>
+<form style="margin:0;padding:0"><input style="margin:0;padding:0" name="q" id="input-q" size="100" value="$q" ></form>
+<pre style="margin:0;padding:0">Example: <a href="?q=$server">$server</a>
+<br/>
+<pre style="margin:0;padding:0">
 $output
+<hr style="margin:0;padding:0">
+<a href="https://github.com/Wikinaut/MySimpleCertViewer">source code on GitHub</a>
 </pre>
 EOF;
+
