@@ -129,7 +129,7 @@ echo <<<EOF
 <h2><a href="?q=">MySimpleCertViewer</a></h2>
 
 <pre style="margin:0;padding:0">Name of the server whose certificate you want to scrutinize:</pre>
-<form style="margin:0;padding:0"><input style="margin:0;padding:0" name="q" id="input-q" size="100" value="$q" ></form>
+<form style="margin:0;padding:0"><input style="margin:0;padding:0" name="q" id="input-q" size="100" value="$q" autofocus ></form>
 <pre style="margin:0;padding:0">Example: <a href="?q=$server">$server</a>
 <br/>
 <pre style="margin:0;padding:0">
