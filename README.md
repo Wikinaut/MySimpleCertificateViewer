@@ -1,7 +1,7 @@
-MySimpleCertViewer
+MySimpleCertificateViewer
 ==================
 
-MySimpleCertViewer - a simple server certificate viewer in PHP.
+MySimpleCertificateViewer - a simple server certificate viewer in PHP.
 
 #### Usage
 
@@ -25,7 +25,7 @@ openssl x509 -fingerprint -sha1 -noout
 #### Example output for https://www.google.org:443
 
 ```
-MySimpleCertViewer
+MySimpleCertificateViewer
 
 source code on GitHub
 
@@ -42,7 +42,7 @@ Array
             [unix] => 1375830554
         )
 
-    [x-mysimplecertviewer-version] => 1.24 20130807
+    [x-mysimplecertificateviewer-version] => 1.24 20130807
     [x-fingerprints] => Array
         (
             [x-sha1] => fd:8c:19:47:69:80:5d:13:d7:14:ce:a3:20:45:af:75:07:f3:55:6f

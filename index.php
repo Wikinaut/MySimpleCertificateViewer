@@ -1,7 +1,7 @@
 <?php
 
 /**
- * MySimpleCertViewer - a simple server certificate viewer in PHP
+ * MySimpleCertificateViewer - a simple server certificate viewer in PHP
  *
  * Authors and contributors
  *
@@ -79,7 +79,7 @@ function getCertificateInfo( $server, $port = 443, $timeout = 5 ) {
 		'utc' => gmdate( "YmdHis\Z" ),
 		'unix' => gmdate( "U" ),
 	);
-	$certArray1['x-mysimplecertviewer-version'] = CERTVIEWER_VERSION;
+	$certArray1['x-mysimplecertificateviewer-version'] = CERTVIEWER_VERSION;
 
 	// Decode the certificate to get fingerprints.
 	$cleanedCert = preg_replace( '/\-+(BEGIN|END) CERTIFICATE\-+/', '', $cert );
@@ -147,7 +147,7 @@ $ts
 }
 
 echo <<<EOF
-<h2><a href="?q=">MySimpleCertViewer</a></h2>
+<h2><a href="?q=">MySimpleCertificateViewer</a></h2>
 
 <pre style="margin:0;padding:0">Name of the server whose certificate you want to scrutinize:</pre>
 <form style="margin:0;padding:0"><input style="margin:0;padding:0" name="q" id="input-q" size="100" value="$q" autofocus ></form>
@@ -156,7 +156,7 @@ echo <<<EOF
 <pre style="margin:0;padding:0">
 $output
 <hr style="margin:0;padding:0">
-<a href="https://github.com/Wikinaut/MySimpleCertViewer">source code on GitHub</a>
+<a href="https://github.com/Wikinaut/MySimpleCertificateViewer">source code on GitHub</a>
 </pre>
 EOF;
 
