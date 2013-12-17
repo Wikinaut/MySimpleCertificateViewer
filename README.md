@@ -6,6 +6,8 @@ MySimpleCertificateViewer - a simple server certificate viewer in PHP.
 #### Usage
 
 Deploy the script ```index.php``` to your web server and point to it.
+Make sure to run a recent PHP version which is not subject to CVE-2013-6420 issue, memory corruption in openssl_x509_parse(), see http://www.php.net/ChangeLog-5.php#5.5.7 .
+
 
 #### Additional information: 
 #### command line to dump the fingerprint of a server certificate without using the script
