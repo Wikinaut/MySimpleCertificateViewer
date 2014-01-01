@@ -203,7 +203,9 @@ function getCertificateInfo( $server, $port = 443, $timeout = 5 ) {
 		"sha256" =>  $sha256
 	);
 
-	$certArray['extensions']['x-subjectAltName'] = explode( ",", $certArray['extensions']['subjectAltName'] );
+	if ( isset( $certArray['extensions']['subjectAltName'] ) ) {
+		$certArray['extensions']['x-subjectAltName'] = explode( ",", $certArray['extensions']['subjectAltName'] );
+	}
 
 	// http://stackoverflow.com/questions/18981671/php-openssl-how-to-match-the-private-key-with-the-certificate
 	// "I don't think there is a straightforward way in PHP OpenSSL to retrieve the signature information from the certificate file.
