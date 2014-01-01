@@ -189,6 +189,11 @@ function getCertificateInfo( $server, $port = 443, $timeout = 5 ) {
 	$md5 = md5( $decCert );
 	$sha256 = hash( 'sha256', $decCert );
 
+	$certArray1['x-serialNumber'] = array(
+		'dec' => $certArray['serialNumber'],
+		'hex' => dechex( $certArray['serialNumber'] )
+	);
+
 	$certArray1['x-fingerprints'] = array(
 		"x-sha1" => addColonSeparators( $sha1 ),
 		"x-md5" => addColonSeparators( $md5 ),
